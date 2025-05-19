@@ -5,19 +5,30 @@ const app = express();
 
 
 // Task 1: Set up the static files middleware
-
+app.use(express.static(__dirname+"/public"))
 
 // Task 2: Set up a route handler for / that sends back index.html
+app.get("/",(req,res)=>
+{res.sendFile(__dirname + "/public/index.html")
 
+})
 
 
 
 // Task 3: Set the view engine to EJS. 
+app.set("view engine","ejs");
+// Task 4: Set up a route handler for /student that...
 
+// ...creates an object called student with the following properties about yourself
+app.get("/student",(req, res)=>
+{const data ={ Name:"Dave",
+  Advisory:"The cool sqaud",
+imageUrl:"https://ntvb.tmsimg.com/assets/assets/494807_v9_bd.jpg?w=360&h=480",
+funFact:"His favorite drink is water"};
 
-// Task 4: Set up a route handler for /student/ that...
+res.render("student.ejs",data)
 
-  // ...creates an object called student with the following properties about yourself
+})
   // "name" (string)
   // "advisory" (string)
   // "imageUrl" (string)
